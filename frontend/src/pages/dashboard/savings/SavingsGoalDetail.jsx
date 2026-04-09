@@ -46,12 +46,10 @@ const SavingsGoalDetail = () => {
             const res = await depostieToSavingGoal(token, uuid, amount, transaction_pin);
             toast.success("Deposit successful");
 
-            // Reset fields and close modal
             setAmount("");
             setTransaction_pin("");
             setModalOpen(false);
 
-            // Refetch to get latest goal data
             fetchGoalDetail();
 
         } catch (error) {
@@ -67,14 +65,20 @@ const SavingsGoalDetail = () => {
 
     return (
         <div className="min-h-screen bg-white text-gray-900 antialiased dark:bg-[#0a0a0a] dark:text-white">
-            <div className="flex">
+
+            {/* ✅ FIX 1 */}
+            <div className="flex min-h-screen bg-white dark:bg-[#0a0a0a]">
+
                 <DesktopSidebar />
                 <MobileSidebar />
 
-                <div className="flex min-h-screen flex-1 flex-col">
+                {/* ✅ FIX 2 */}
+                <div className="flex min-h-screen flex-1 flex-col bg-white dark:bg-[#0a0a0a]">
+
                     <DashboardHeader />
 
-                    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 lg:px-8">
+                    {/* ✅ FIX 3 */}
+                    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 lg:px-8 bg-white dark:bg-[#0a0a0a]">
 
                         {/* Top bar */}
                         <div className="mb-6 flex items-center justify-between">
@@ -92,17 +96,13 @@ const SavingsGoalDetail = () => {
                                 <PlusCircle className="h-4 w-4" /> Deposit
                             </button>
 
-                            {/* Modal */}
                             {modalOpen && (
                                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-                                    {/* Backdrop */}
                                     <div className="absolute inset-0" onClick={() => !depositing && setModalOpen(false)} />
 
                                     <div className="relative w-full max-w-md rounded-2xl border border-gray-200 bg-white p-5 shadow-2xl dark:border-white/10 dark:bg-[#101113]">
 
-                                        {/* Close button */}
                                         <button
-
                                             onClick={() => !depositing && setModalOpen(false)}
                                             className="absolute right-3 top-3 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 shadow-sm  dark:border-white/10 dark:bg-white/5 dark:text-white"
                                         >
@@ -122,7 +122,6 @@ const SavingsGoalDetail = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                        
 
                                         <div className="mb-4 rounded-2xl border border-gray-200 bg-gray-50 p-3 text-sm dark:border-white/10 dark:bg-black/40">
                                             <div className="flex items-center gap-2 text-gray-700 dark:text-white/80">

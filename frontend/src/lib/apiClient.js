@@ -20,7 +20,7 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-  baseURL: "https://banking-backend-39g7.onrender.com/api/v1",
+  baseURL: "http://localhost:8000/api/v1",
    withCredentials: true,
 });
 

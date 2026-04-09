@@ -56,7 +56,6 @@ const Overview = () => {
 
             if (res.status === 200) {
                 toast.success("Withdrawal successful!");
-                // Bust cache and re-fetch fresh data
                 dispatch(clearOverview());
                 hasFetched.current = false;
                 await fetchOverview();
@@ -81,14 +80,20 @@ const Overview = () => {
 
     return (
         <div className="min-h-screen bg-white text-gray-900 antialiased dark:bg-[#0a0a0a] dark:text-white">
-            <div className="flex">
+
+            {/* ✅ FIX 1 */}
+            <div className="flex min-h-screen bg-white dark:bg-[#0a0a0a]">
+
                 <DesktopSidebar />
                 <MobileSidebar />
 
-                <div className="flex min-h-screen flex-1 flex-col">
+                {/* ✅ FIX 2 */}
+                <div className="flex min-h-screen flex-1 flex-col bg-white dark:bg-[#0a0a0a]">
+
                     <DashboardHeader />
 
-                    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
+                    {/* ✅ FIX 3 */}
+                    <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8 bg-white dark:bg-[#0a0a0a]">
 
                         {/* Top summary cards */}
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -147,8 +152,8 @@ const Overview = () => {
                             </div>
                         </div>
 
-                        {/* Savings grid */}
-                        <section className="mt-8">
+                   
+                          <section className="mt-8">
                             <div className="mb-3 flex items-center justify-between">
                                 <h2 className="text-lg font-semibold">Your Saving Goals</h2>
                                 <Link to="/dashboard/savings" className="text-sm text-gray-900 underline-offset-4 hover:underline dark:text-white">
@@ -275,6 +280,7 @@ const Overview = () => {
                                 </Link>
                             </div>
                         </section>
+                        
                     </main>
                 </div>
             </div>

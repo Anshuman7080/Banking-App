@@ -98,12 +98,23 @@ export default function Header() {
             )}
 
             {/* Mobile menu button */}
-            <button
+            {token ? (
+              <Link
+                to="/dashboard"
               aria-label="Toggle navigation"
               className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 md:hidden dark:border-white/10 dark:bg-[#101113] dark:text-white dark:hover:bg-[#131416] dark:focus-visible:ring-white/15"
             >
               <span className="text-lg">☰</span>
-            </button>
+            </Link>
+            ):(
+             <Link
+                to={CTA.to}
+              aria-label="Toggle navigation"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-gray-200 bg-white text-gray-700 shadow-sm transition hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 md:hidden dark:border-white/10 dark:bg-[#101113] dark:text-white dark:hover:bg-[#131416] dark:focus-visible:ring-white/15"
+            >
+              <span className="text-lg">☰</span>
+            </Link>
+            )}
           </div>
         </div>
 

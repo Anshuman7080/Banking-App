@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 
 
 
-export default function signup(email, password, navigate) {
+export default function signup(email, password,transaction_pin, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Creating account...");
 
@@ -20,7 +20,7 @@ export default function signup(email, password, navigate) {
       const response = await apiClient(
         "POST",
         "/user/auth/register/",
-        { email, password }
+        { email, password ,transaction_pin}
       );
 
       if (response.status === 201) {

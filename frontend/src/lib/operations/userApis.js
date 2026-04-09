@@ -41,6 +41,7 @@ export const  UploadKycDetail=async(full_name,date_of_birth,id_type,id_image,tok
            },null,true)
 
            console.log("response of create kyc is",res);
+           return res;
         
     }
     catch(error){

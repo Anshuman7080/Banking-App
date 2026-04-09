@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated,AllowAny
 from userauths import models as userauths_models
 from django.core.files.storage import default_storage
 from rest_framework.parsers import FormParser,MultiPartParser
+from core.models import Wallet
 
 
 class FileUploadView(APIView):
@@ -35,32 +36,36 @@ class FileUploadView(APIView):
 
 # add transaction pin also ----pending
 class RegisterView(APIView):
-    def post(self,request):
-        serializer=userauths_serializers.UserRegistrationSerializer(data=request.data)
+    def post(self, request):
+        serializer = userauths_serializers.UserRegistrationSerializer(data=request.data)
+        print("coming here 1")
 
-        if serializer.is_valid(raise_exception=True):
-            user=serializer.save()
-            refresh=RefreshToken.for_user(user)
+        if serializer.is_valid():
+            print("coming here 2")
+            user = serializer.save()
 
-            response_data={
-                'access':str(refresh.access_token),
-                "message":"User registered and logged in successfully"
+            Wallet.objects.create(user=user)
+
+            refresh = RefreshToken.for_user(user)
+
+            response_data = {
+                'access': str(refresh.access_token),
+                'message': 'User registered and logged in successfully'
             }
-            response=Response(response_data,status=status.HTTP_201_CREATED)
-
+            response = Response(response_data, status=status.HTTP_201_CREATED)
             response.set_cookie(
-                key="refresh",
+                key='refresh',
                 value=str(refresh),
                 httponly=True,
                 max_age=settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'].total_seconds(),
-                samesite=settings.SIMPLE_JWT.get("AUTH_COOKIE_SAMESITE",'Lax'),
-                secure=settings.SIMPLE_JWT.get('AUTH_COOKIE_SECURE',not settings.DEBUG)
-
+                samesite=settings.SIMPLE_JWT.get('AUTH_COOKIE_SAMESITE', 'Lax'),
+                secure=settings.SIMPLE_JWT.get('AUTH_COOKIE_SECURE', not settings.DEBUG)
             )
             return response
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+        print("Serializer errors:", serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-          
 class LoginView(APIView):
     def post(self,request):
         email=request.data.get("email")

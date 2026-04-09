@@ -187,22 +187,19 @@ const KYC = () => {
                                         </div>
 
                                         {/* ID type */}
-                                        <div>
-                                            <label className="mb-1 block text-xs font-medium text-gray-700 dark:text-white/70">ID type</label>
-                                            <div className="relative">
-                                                <IdCard className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-white/50" />
-                                                <select
-                                                    onChange={handleChange}
-                                                    name="id_type"
-                                                    value={formDetail.id_type}
-                                                    className="w-full appearance-none rounded-xl border border-gray-300 bg-white px-9 py-2 text-sm text-gray-900 outline-none ring-0 transition focus:border-gray-400 dark:border-white/10 dark:bg-transparent dark:text-white"
-                                                >
-                                                    <option value="NATIONAL_ID">National ID Card</option>
-                                                    <option value="DRIVERS_LICENSE">Driver's License</option>
-                                                    <option value="PASSPORT">International Passport</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                             <div className="relative bg-white dark:bg-[#0a0a0a]">
+                                    <IdCard className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-white/50" />
+                                    <select
+                                        onChange={handleChange}
+                                        name="id_type"
+                                        value={formDetail.id_type}
+                                        className="w-full appearance-none rounded-xl border border-gray-300 bg-white dark:bg-[#0a0a0a] px-9 py-2 text-sm text-gray-900 dark:text-white outline-none ring-0 transition focus:border-gray-400 dark:border-white/10"
+                                    >
+                                        <option value="NATIONAL_ID">National ID Card</option>
+                                        <option value="DRIVERS_LICENSE">Driver's License</option>
+                                        <option value="PASSPORT">International Passport</option>
+                                    </select>
+                                    </div>
 
                                         {/* ID image upload */}
                                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

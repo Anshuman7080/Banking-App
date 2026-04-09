@@ -11,25 +11,32 @@ class FileUploadSerializer(serializers.Serializer):
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
 
-
     class Meta:
-        model=User
-        fields=['id','email','password']
-        extra_kwargs={
-            'password':{'write_only':True}
+        model = User
+        fields = ['id', 'email', 'password', 'transaction_pin']
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'transaction_pin': {'write_only': True}
         }
 
-    def create(self,validated_data):
-        email=validated_data['email']
-        password=validated_data['password']
-        local_part=email.split('@')[0]
-        user=User.objects.create_user(
+    def validate_transaction_pin(self, value):
+        if not value.isdigit() or len(value) != 4:
+            raise serializers.ValidationError("Transaction PIN must be exactly 4 digits.")
+        return value
+
+    def create(self, validated_data):
+        email = validated_data['email']
+        password = validated_data['password']
+        transaction_pin = validated_data['transaction_pin']
+        local_part = email.split('@')[0]
+
+        user = User.objects.create_user(
             username=local_part,
             email=email,
-            password=password
-        )  
-        return user  
-
+            password=password,
+            transaction_pin=transaction_pin
+        )
+        return user
 
 class UserSerializer(serializers.ModelSerializer):
 
