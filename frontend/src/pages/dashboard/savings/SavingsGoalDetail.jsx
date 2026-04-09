@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 
 const SavingsGoalDetail = () => {
 
+    console.log("coming in saving goal");
     const [amount, setAmount] = useState("");
     const [transaction_pin, setTransaction_pin] = useState("");
     const [depositing, setDepositing] = useState(false);
@@ -101,6 +102,7 @@ const SavingsGoalDetail = () => {
 
                                         {/* Close button */}
                                         <button
+
                                             onClick={() => !depositing && setModalOpen(false)}
                                             className="absolute right-3 top-3 inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-700 shadow-sm  dark:border-white/10 dark:bg-white/5 dark:text-white"
                                         >
@@ -120,6 +122,7 @@ const SavingsGoalDetail = () => {
                                                 </p>
                                             </div>
                                         </div>
+                                        
 
                                         <div className="mb-4 rounded-2xl border border-gray-200 bg-gray-50 p-3 text-sm dark:border-white/10 dark:bg-black/40">
                                             <div className="flex items-center gap-2 text-gray-700 dark:text-white/80">
