@@ -17,6 +17,7 @@ const SavingsGoalNew = () => {
 
     const token = useSelector((state) => state.auth.token);
     const navigate = useNavigate();
+    const dispatch=useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,15 +44,18 @@ const SavingsGoalNew = () => {
                 token,
             });
             toast.success("Saving goal created successfully");
+            
             dispatch(clearOverview());
 
             // Reset to initial state
             setName("");
             setAmount("");
             setDate("");
+          
 
             // Navigate to savings list
             navigate("/dashboard/savings");
+           
 
         } catch (error) {
             toast.error("Failed to create goal, please try again");
