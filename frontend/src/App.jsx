@@ -20,7 +20,7 @@ import Notifications from "./pages/dashboard/notification/Notifications"
 import SavingsGoalNew from "./pages/dashboard/savings/SavingsGoalNew"
 import SavingsGoalsList from "./pages/dashboard/savings/SavingGoalList"
 import SavingsGoalDetail from "./pages/dashboard/savings/SavingsGoalDetail"
-import OpenRoute from './components/OpenRoutes'
+import OpenRoute from './components/openRoutes'
 import PrivateRoute from './components/privateRoutes'
 
 function App() {
