@@ -11,6 +11,7 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # SECURITY
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
+ALLOWED_HOSTS = ["*"]  # For development, allow all hosts. Change in production!
 # APPS
 INSTALLED_APPS = [
     # 'jazzmin',
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
 # MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -106,7 +108,9 @@ USE_I18N = True
 USE_TZ = True
 
 # STATIC
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+STATIC_URL = '/static/' # Use absolute URL for static files
+STATIC_ROOT = BASE_DIR / "staticfiles" # Collect static files here for production
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

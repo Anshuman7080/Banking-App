@@ -20,3 +20,9 @@ build/
 
 # Mac
 .DS_Store
+
+staticfiles/
+media/
+
+# migrations cache
+*/migrations/__pycache__/
