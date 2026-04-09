@@ -85,8 +85,9 @@ class LoginView(APIView):
                 httponly=True,
                 max_age=settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'].total_seconds(),  # Cookie lifetime in seconds
                 # samesite=settings.SIMPLE_JWT.get('AUTH_COOKIE_SAMESITE', 'Lax'),  # Restrict cross-site sending
-                samesite="Lax",
-                secure=settings.SIMPLE_JWT.get('AUTH_COOKIE_SECURE', not settings.DEBUG),  # HTTPS-only in prod
+                samesite="None",
+                secure=True,
+                # secure=settings.SIMPLE_JWT.get('AUTH_COOKIE_SECURE', not settings.DEBUG),  # HTTPS-only in prod
             )
 
            
