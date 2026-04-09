@@ -11,7 +11,11 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # SECURITY
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
-ALLOWED_HOSTS = ["*"]  # For development, allow all hosts. Change in production!
+ALLOWED_HOSTS = [
+    "banking-backend-39g7.onrender.com",
+    "127.0.0.1",
+    "localhost",
+] 
 # APPS
 INSTALLED_APPS = [
     # 'jazzmin',
